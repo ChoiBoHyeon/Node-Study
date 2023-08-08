@@ -4,15 +4,17 @@ if (true) {
 }
 console.log(x);
 
+/*
 function a() {
     let z = 4;
-    
+    console.log(z);
 }
-a(console.log(z));
+a();
+*/
 
 // const - 지역변수 (중괄호 안에서만 인식)
 if (true) {
     const y = 3;
 }
-console.log(y);
+// console.log(y); //에러 발생
 
