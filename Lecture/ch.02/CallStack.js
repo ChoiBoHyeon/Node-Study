@@ -13,4 +13,3 @@ function thrid() {
 }
 
 first();
-console.log('test');
