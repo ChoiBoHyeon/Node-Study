@@ -52,23 +52,43 @@ http.createServer(async (req, res) => {
         });
         return req.on('end', () => {
           console.log('PUT 본문(Body):', body);
+          console.log(`PUT log : (${key})유저 이름 변경 완료`)
           users[key] = JSON.parse(body).name;
+          
           res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
           return res.end(JSON.stringify(users));
         });
       }
     } else if (req.method === 'DELETE') {
-      if (req.url.startsWith('/user/')) {
-        const key = req.url.split('/')[2];
-        delete users[key];
-        res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-        const response = {
-            message : '삭제 완료',
-            users : users
+        if (req.url.startsWith('/user/')) {
+          const key = req.url.split('/')[2];
+          console.log(`DELETE log : (${key})유저 삭제 완료`)
+          delete users[key];
+          res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+          return res.end(JSON.stringify(users));
         }
-        return res.end(JSON.stringify(users));
       }
-    }
+/*
+    } else if (req.method === 'DELETE') {
+        if (req.url.startsWith('/user/')) {
+          const key = req.url.split('/')[2];
+          
+          if (users[key]) {
+            const deletedUser = users[key];
+            delete users[key];
+            
+            res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+            const response = {
+              message: 'Deletion complete',
+            };
+            return res.end(JSON.stringify(response));
+          } else {
+            res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+            return res.end('User not found');
+          }
+        }
+      }
+*/
     res.writeHead(404);
     return res.end('NOT FOUND');
   } catch (err) {
