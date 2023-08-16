@@ -11,7 +11,7 @@ http.createServer(async (req, res) => {
         const data = await fs.readFile(path.join(__dirname, 'restFront.html'));
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         return res.end(data);
-      } else if (req.url === '/about') {
+      } else if (req.url === '/about') {    
         const data = await fs.readFile(path.join(__dirname, 'about.html'));
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         return res.end(data);
@@ -62,6 +62,10 @@ http.createServer(async (req, res) => {
         const key = req.url.split('/')[2];
         delete users[key];
         res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+        const response = {
+            message : '삭제 완료',
+            users : users
+        }
         return res.end(JSON.stringify(users));
       }
     }
