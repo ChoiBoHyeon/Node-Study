@@ -29,6 +29,7 @@ http.createServer(async (req, res) => {
       Location: '/',
       'Set-Cookie': `session=${uniqueInt}; Expires=${expires.toGMTString()}; HttpOnly; Path=/`,
     });
+    console.log("세션 발급 완료");
     res.end();
   // 세션쿠키가 존재하고, 만료 기간이 지나지 않았다면
   } else if (cookies.session && session[cookies.session].expires > new Date()) {

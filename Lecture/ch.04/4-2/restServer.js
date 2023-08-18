@@ -7,14 +7,17 @@ const users = {}; // 데이터 저장용
 http.createServer(async (req, res) => {
   try {
     if (req.method === 'GET') {
+        // Home
       if (req.url === '/') {
         const data = await fs.readFile(path.join(__dirname, 'restFront.html'));
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         return res.end(data);
-      } else if (req.url === '/about') {    
+        // 페이지 설명
+      } else if (req.url === '/about') {
         const data = await fs.readFile(path.join(__dirname, 'about.html'));
         res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
         return res.end(data);
+        // User 전체
       } else if (req.url === '/users') {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         return res.end(JSON.stringify(users));
@@ -27,6 +30,7 @@ http.createServer(async (req, res) => {
         // 주소에 해당하는 라우트를 못 찾았다는 404 Not Found error 발생
       }
     } else if (req.method === 'POST') {
+        // User 등록
       if (req.url === '/user') {
         let body = '';
         // 요청의 body를 stream 형식으로 받음
@@ -44,6 +48,7 @@ http.createServer(async (req, res) => {
         });
       }
     } else if (req.method === 'PUT') {
+        // User 정보 수정
       if (req.url.startsWith('/user/')) {
         const key = req.url.split('/')[2];
         let body = '';
@@ -60,6 +65,7 @@ http.createServer(async (req, res) => {
         });
       }
     } else if (req.method === 'DELETE') {
+        // User 삭제
         if (req.url.startsWith('/user/')) {
           const key = req.url.split('/')[2];
           console.log(`DELETE log : (${key})유저 삭제 완료`)
