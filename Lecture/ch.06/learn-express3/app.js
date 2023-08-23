@@ -44,8 +44,8 @@ const upload = multer({
       done(null, path.basename(file.originalname, ext) + Date.now() + ext);
     },
   }),
-  // 파일 크기 5Mbyte 이하만 가능
-  limits: { fileSize: 5 * 1024 * 1024 },
+  // 파일 크기 5Mbyte 이하만 가능 
+  limits: { fileSize: 10 * 1024 * 1024 ,message : '파일크기 제한'},
 });
 app.get('/upload', (req, res) => {
   res.sendFile(path.join(__dirname, 'multipart.html'));
