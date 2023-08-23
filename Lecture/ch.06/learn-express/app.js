@@ -5,6 +5,7 @@ const app = express()
 
 app.set('port', process.env.PORT || 3000);
 
+// next -> 중복을 줄이기 위한 함수
 app.use((req, res, next) => {
     console.log('미들웨어 사용 중');
     next();
