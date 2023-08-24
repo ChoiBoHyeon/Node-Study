@@ -11,11 +11,11 @@ app.set('port', process.env.PORT || 3000);
 // dev : 개발시 , combined : 배포시
 app.use(morgan('dev'));
 // cookie 암호화
-app.use(cookieParser('testcookie'));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
     resave : false,
     saveUninitialized : false,
-    secret : 'testsession',
+    secret : process.env.COOKIE_SECRET,
     cookie : {
         httpOnly : true,
     },
