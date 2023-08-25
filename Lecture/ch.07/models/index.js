@@ -11,7 +11,6 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-
 db.User = User;
 db.Comment = Comment;
 
@@ -20,6 +19,5 @@ Comment.initiate(sequelize);
 
 User.associate(db);
 Comment.associate(db);
-
 
 module.exports = db;
