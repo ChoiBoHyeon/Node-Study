@@ -11,30 +11,32 @@ app.use((req, res, next) => {
     next();
 });
 
-/*
 // route parameter 라우트 매개변수
 app.get('/category/:name', (req,res) => {
     res.send(`hello ${req.params.name}`);
 });
-*/
 
 app.get('/',(req, res) => {
+    console.log("Home 화면")
     res.sendFile(path.join(__dirname,'./index.html'));
 });
 
 app.post('/about',(req, res) => {
+    console.log("/about 화면")
     res.send('hello express');
 });
 
 app.get('/get',(req, res) => {
+    console.log("get 화면")
     res.send('hello express2');
 });
 
 // 오류 처리 및 Http Status 관리
 app.use((req, res, next) => {
+    console.log("about 화면")
     res.status(200).send('페이지를 찾을 수 없습니다.');
 })
 
 app.listen(3000, () => {
-    console.log('express 서버 실행')
+    console.log('express 서버 실행 (3000포트 대기중)')
 })

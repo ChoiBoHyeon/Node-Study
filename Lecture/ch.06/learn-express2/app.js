@@ -13,13 +13,13 @@ app.use(morgan('dev'));
 // cookie 암호화
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
-    resave : false,
-    saveUninitialized : false,
-    secret : process.env.COOKIE_SECRET,
-    cookie : {
-        httpOnly : true,
+    resave: false,
+    saveUninitialized: false,
+    secret: process.env.COOKIE_SECRET,
+    cookie: {
+        httpOnly: true,
     },
-    name : 'connect.sid',
+    name: 'connect.sid',
 }));
 
 // midlleway 확장법
@@ -48,7 +48,8 @@ app.get('/category/:name', (req,res) => {
 */
 
 app.use((req, res, next) => {
-    req.session.data = '비밀번호';
+    req.session.data = 'ABCD';
+    next();
 });
 
 app.get('/',(req, res, next) => {
