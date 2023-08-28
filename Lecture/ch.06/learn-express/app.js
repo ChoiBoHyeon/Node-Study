@@ -33,7 +33,6 @@ app.get('/get',(req, res) => {
 
 // 오류 처리 및 Http Status 관리
 app.use((req, res, next) => {
-    console.log("about 화면")
     res.status(200).send('페이지를 찾을 수 없습니다.');
 })
 

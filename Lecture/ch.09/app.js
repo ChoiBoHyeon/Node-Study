@@ -6,7 +6,9 @@ const seesion = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 
+// .env 연결
 dotenv.config();
+// router 적용
 const pageRouter = require('./routes/page');
 
 const app = express();
@@ -22,3 +24,14 @@ app.use(express.static(path.join(__dirname,'pubilc')));
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(session({
+    resave : false,
+    saveUninitialized : false,
+    secret : process.env.COOKIE_SECRET,
+    cookie : {
+        httpOnly : true,
+        secure : false,
+    }
+}));
+
+app.use('/', pageRouter);
