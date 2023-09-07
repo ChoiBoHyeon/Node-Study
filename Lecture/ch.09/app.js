@@ -13,23 +13,23 @@ dotenv.config();
 // router 적용
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
-const passportConfig = require = ('./passport');
+const passportConfig = require('./passport');
+
 
 const app = express();
 app.set('port', process.env.PORT || 8001);
 app.set('view engine', 'html');
-nunjucks.configure('views',{
-    express : app,
-    watch : true,
+nunjucks.configure('views', {
+  express: app,
+  watch: true,
 });
-
-sequelize.sync( /* 개발시 -> force : false */ )
-    .then(() => {
-        console.log('데이터베이스 구축 성공');
-    })
-    .catch((err) => {
-        console.error(err);
-    })
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('데이터베이스 연결 성공');
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
