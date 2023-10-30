@@ -7,6 +7,8 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const { sequelize } = require('./models');
 const passport = require('passport');
+const Passport = require("./passport/index");
+Passport();
 
 // .env 연결
 dotenv.config();

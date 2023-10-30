@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const User = require('../models/user');
+require("../passport/index");
 
 exports.join = async (req, res, next) => {
   const { email, nick, password } = req.body;
@@ -23,6 +24,7 @@ exports.join = async (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
+  console.log('Test');
   passport.authenticate('local', (authError, user, info) => {
     if (authError) {
       console.error(authError);
