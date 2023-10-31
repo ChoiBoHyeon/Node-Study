@@ -5,6 +5,7 @@ class User extends Sequelize.Model {
         User.init({
             email : {
                 type: Sequelize.STRING(40),
+                // Kakao Rest API 정책 변경으로 인한 NotNull 허용.
                 allowNull : true,
                 unique : true,
             },
