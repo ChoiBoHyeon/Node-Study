@@ -5,7 +5,7 @@ class User extends Sequelize.Model {
         User.init({
             email : {
                 type: Sequelize.STRING(40),
-                allowNull : false,
+                allowNull : true,
                 unique : true,
             },
             nick : {
