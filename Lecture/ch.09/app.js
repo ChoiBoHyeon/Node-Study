@@ -15,6 +15,7 @@ dotenv.config();
 // router 적용
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
+const postRouter = require('./routes/post');
 const passportConfig = require('./passport');
 
 
@@ -34,6 +35,7 @@ sequelize.sync({ force: false })
   });
 
 app.use(morgan('dev'));
+app.use('/img',express.static(path.join(__dirname, 'uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
@@ -53,6 +55,7 @@ app.use(passport.session());
 
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
+app.use('/post', postRouter);
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
