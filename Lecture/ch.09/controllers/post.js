@@ -21,7 +21,7 @@ exports.uploadPost = async (req, res, next) => {
           })
         }),
       );
-      await post.addHashtags(result.map(r => r[0]));
+      await post.addHashtags(result.map(r => r[0]))
     }
     res.redirect('/');
   } catch (error) {
