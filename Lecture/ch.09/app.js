@@ -12,19 +12,18 @@ Passport();
 
 // .env 연결
 dotenv.config();
-// router 적용
+// router 적용 필수적으로 할것.
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
 const postRouter = require('./routes/post');
 const userRouter = require('./routes/user');
 const passportConfig = require('./passport');
 
-
 const app = express();
 app.set('port', process.env.PORT || 8001);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
-  express: app,
+  express: app, 
   watch: true,
 });
 sequelize.sync({ force: false })
@@ -54,6 +53,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// 라우터 사용할 것
 app.use('/', pageRouter);
 app.use('/auth', authRouter);
 app.use('/post', postRouter);

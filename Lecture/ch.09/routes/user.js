@@ -1,9 +1,10 @@
 const express = require('express');
+const router = express.Router();
 
 const { isLoggedIn } = require('../middlewares');
 const { follow } = require('../controllers/user');
 
-const router = express.Router();
+
 
 // POST /user/:id/follow
 try {
@@ -12,6 +13,5 @@ try {
     console.log('router-user error');
     next(error);
 }
-
 
 module.exports = router;
