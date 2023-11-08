@@ -32,6 +32,7 @@ exports.createTokoen = async (req, res) => {
     })
   }
 }
+
 exports.tokoenTest = async (req, res) => {
   res.json(res.locals.decoded);
   }
