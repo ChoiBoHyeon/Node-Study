@@ -5,7 +5,6 @@ const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 
-// 
 dotenv.config();
 const indexRouter = require('./routes');
 const app = express();
