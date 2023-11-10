@@ -15,7 +15,7 @@ dotenv.config();
 // router 적용 필수적으로 할것.
 const authRouter = require('./routes/auth');
 const indexRouter = require('./routes');
-const passportConfig = require('./passport');
+const v1Router = require('./routes/v1');
 
 const app = express();
 app.set('port', process.env.PORT || 8002);
@@ -53,6 +53,7 @@ app.use(passport.session());
 // 라우터 사용할 것
 app.use('/auth', authRouter);
 app.use('/',indexRouter);
+app.use('/v1',v1Router);
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
