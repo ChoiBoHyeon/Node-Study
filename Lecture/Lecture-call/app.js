@@ -9,7 +9,7 @@ dotenv.config();
 const indexRouter = require('./routes');
 const app = express();
 
-// 포트 설정
+// 포트 설정 4000
 app.set('port', process.env.PROT || 4000);
 app.set('view engine', 'html');
 nunjucks.configure('view', {
