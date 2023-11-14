@@ -1,5 +1,54 @@
 const axios = require('axios');
 
+const URL = process.env.API_URL;
+axios.defaults.headers.origin = process.env.ORIGIN; // origin 헤더 추가
+
+
+const request = async (req, api) => {
+  try {
+    if (!req.session.jwt) {
+      const tokenResult = await axios.post(`${URL}/token`, {
+        clientSecret: process.env.CLIENT_SECRET,
+      })
+      req.session.jwt = tokenResult.data.token;
+    }
+    return await axios.get(`${URL}${api}`, {
+      headers : {authorization: req.session.jwt },
+    })
+  } catch (error) {
+    if (error.response?.status === 419) { // 토큰 만료 시
+      delete req.session.jwt; // 만료시 세션에서 jwt 제거
+      return request(req, api);
+    }
+    throw error; // 재귀함수 사용해서 다시 jwt 만들기
+  }
+};
+
+exports.getMyPosts = async (req, res, next) => {
+  try {
+    const result = await request(req, '/posts/my');
+    res.json(result.data);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+};
+
+exports.searchByHashtag = async (req, res, next) => {
+  try {
+    const result = await request(
+      req, `/posts/hashtag/${encodeURIComponent(req.params.hashtag)}`, // 한근 디코딩
+    );
+    res.json(result.data);
+  } catch (error) {
+    if (error.code) {
+      console.error(error);
+      next(error);
+    }
+  }
+};
+
+/*
 exports.test = async (req, res, next) => {
   try {
     // 토큰이 없다면
@@ -27,3 +76,4 @@ exports.test = async (req, res, next) => {
     return next(error);
   }
 };
+*/
