@@ -20,7 +20,7 @@ const request = async (req, api) => {
       delete req.session.jwt; // 만료시 세션에서 jwt 제거
       return request(req, api);
     }
-    throw error; // 재귀함수 사용해서 다시 jwt 만들기
+    return error.response; // 재귀함수 사용해서 다시 jwt 만들기
   }
 };
 
@@ -37,7 +37,7 @@ exports.getMyPosts = async (req, res, next) => {
 exports.searchByHashtag = async (req, res, next) => {
   try {
     const result = await request(
-      req, `/posts/hashtag/${encodeURIComponent(req.params.hashtag)}`, // 한근 디코딩
+      req, `/posts/hashtag/${encodeURIComponent(req.params.hashtag)}`, // 한글 디코딩
     );
     res.json(result.data);
   } catch (error) {
