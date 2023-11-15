@@ -5,7 +5,7 @@ const { createToken, tokenTest, getMyPosts, getPostsByHashtag } = require('../co
 
 const router = express.Router();
 
-router.use(deprecated);
+router.use(deprecated); // 버전 관리
 
 // POST /v1/token
 router.post('/token', createToken);

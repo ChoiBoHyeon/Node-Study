@@ -48,6 +48,7 @@ exports.apiLimiter = rateLimit({
   }
 });
 
+// 버전 관리
 exports.deprecated = (req, res) => {
   res.status(410).json({
     code: 410,
