@@ -48,6 +48,10 @@ exports.searchByHashtag = async (req, res, next) => {
   }
 };
 
+exports.renderMain = (rleq, res) => {
+  res.render('main',{ key: process.env.CLIENT_SECRET });
+}
+
 /*
 exports.test = async (req, res, next) => {
   try {
