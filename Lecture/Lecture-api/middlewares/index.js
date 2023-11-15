@@ -39,7 +39,7 @@ exports.isLoggedIn = (req, res, next) => {
 
 exports.apiLimiter = async (req, res, next) => {
   let user;
-  if (res.locals.decoded.id) {
+  if (res.locals.decoded) {
     user = await User.findOne({where: { id: res.locals.decoded.id } });
   }
   user = await User.findOne({where: {id : req.locals.decoded.id} });
