@@ -37,16 +37,23 @@ exports.isLoggedIn = (req, res, next) => {
     }
   };
 
-exports.apiLimiter = rateLimit({
-  windowMs: 60*1000,
-  max: 10,
-  handler(req, res){
-    res.status(this.statusCode).json({
-      code: this.statusCode,
-      message: '1분에 한 번만 요청할 수 있습니다.'
-    });
+exports.apiLimiter = async (req, res, next) => {
+  let user;
+  if (res.locals.decoded.id) {
+    user = await User.findOne({where: { id: res.locals.decoded.id } });
   }
-});
+  user = await User.findOne({where: {id : req.locals.decoded.id} });
+  rateLimit({
+    windowMs: 60*1000,
+    max : user.type === 'premium'? 1000:10,
+    handler(req, res){
+      res.status(this.statusCode).json({
+        code: this.statusCode,
+        message: '1분에 한 번만 요청할 수 있습니다.'
+      });
+    }
+  })(req, res, next);
+}
 
 // 버전 관리
 exports.deprecated = (req, res) => {

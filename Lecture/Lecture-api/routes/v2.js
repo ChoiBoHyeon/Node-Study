@@ -9,12 +9,12 @@ const router = express.Router();
 router.post('/token', apiLimiter, createToken);
 
 // POST /v1/test
-router.get('/test', apiLimiter, verifyToken, tokenTest);
+router.get('/test', verifyToken, apiLimiter, tokenTest);
 
 // GET /v1/posts/my
-router.get('/posts/my', apiLimiter, verifyToken, getMyPosts);
+router.get('/posts/my', verifyToken, apiLimiter, getMyPosts);
 
 // GET /v1/posts/hashtag/:title
-router.get('/posts/hashtag/:title', apiLimiter, verifyToken, getPostsByHashtag);
+router.get('/posts/hashtag/:title', verifyToken, apiLimiter, getPostsByHashtag);
 
 module.exports = router;
