@@ -7,11 +7,11 @@ exports.follow = async (req, res, next) => {
       await user.addFollowing(parseInt(req.params.id, 10));
       res.send('success');
     } else {
-      console.log('여기가 문제네');
+      // console.log('여기가 문제네');
       res.status(404).send('no user');
     }
   } catch (error) {
-    console.log('여기가 문제네2');
+    // console.log('여기가 문제네2');
     console.error(error);
     next(error);
   }
