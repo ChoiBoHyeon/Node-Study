@@ -1,3 +1,5 @@
+// services로 옮겨가면서 안사용
+/*
 jest.mock('../models/user');
 const User = require('../models/user');
 const { follow } = require('./user');
@@ -50,3 +52,4 @@ describe('follow', () => {
     expect(next).toBeCalledWith(message);
   })
 })
+*/
