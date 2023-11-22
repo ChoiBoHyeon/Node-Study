@@ -31,3 +31,4 @@ Object.keys(db).forEach(modelName => { // associate 호출
 });
 
 module.exports = db;
+// 오류
