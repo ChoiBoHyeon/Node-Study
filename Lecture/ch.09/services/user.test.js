@@ -9,7 +9,7 @@ describe('follow', () => {
         return Promise.resolve(true);
       }
     });
-    const result = await follow(1,2);
+    const result = await follow(1, 2);
     expect(result).toEqual('ok');
   });
 
