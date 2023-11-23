@@ -19,9 +19,9 @@ fs
   })
   .forEach(file => { // 해당 파일의 모델 불러와서 init
     const model = require(path.join(__dirname, file));
-    console.log(file, model.name);
+    //console.log(file, model.name);
     db[model.name] = model;
-    model.init(sequelize);
+    model.initiate(sequelize);
   });
 
 Object.keys(db).forEach(modelName => { // associate 호출
@@ -31,4 +31,3 @@ Object.keys(db).forEach(modelName => { // associate 호출
 });
 
 module.exports = db;
-// 오류
