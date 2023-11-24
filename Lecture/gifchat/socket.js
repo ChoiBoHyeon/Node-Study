@@ -18,6 +18,7 @@ module.exports = (server) => {
       console.log(data);
     })
 
+    
     socket.on('error', console.error);
     socket.interavl = setInterval(() => {
       socket.emit('news', 'Hello Socket.IO');    
