@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "color-hash": "^2.0.2",
+    "mongoose": "^8.0.1",
     "multer": "^1.4.5-lts.1"
   }
 }
