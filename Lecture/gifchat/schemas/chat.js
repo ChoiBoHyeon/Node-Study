@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const roomSchema = new Schema({
+const { ObjectId } = Schema;
+const chatSchema = new Schema({
   room: {
     type: ObjectId,
     required: true,
