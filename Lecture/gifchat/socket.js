@@ -35,9 +35,9 @@ module.exports = (server, app, sessionMiddleware) => {
       const roomId = new URL(referer).pathname.split('/').at(-1)
       const currentRoom = chat.adapter.rooms.get(roomId);
       const userCount = currentRoom?.size || 0;
-      if ( userCount === 0) {
+      if ( userCount === 0) { // 인원수가 0이면
         await removeRoom(roomId);
-        room.emit('removeRoom', roomId);
+        room.emit('removeRoom', roomId); // removeRoom 실행
         console.log(`${roomId}방 제거 완료`)
       }
       socket.to(roomId).emit('exit', {
