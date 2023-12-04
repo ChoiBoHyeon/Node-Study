@@ -1,29 +1,29 @@
 {
   "name": "auction",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "경매시스템",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app"
   },
-  "keywords": [],
-  "author": "",
+  "author": "BoHyeon",
   "license": "ISC",
   "dependencies": {
-    "cookie-parser": "^1.4.6",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.6.5",
-    "nunjucks": "^3.2.4",
-    "passport": "^0.7.0",
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "mysql2": "^2.1.0",
+    "nunjucks": "^3.2.0",
+    "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.35.1",
-    "sequelize-cli": "^6.6.2"
+    "sequelize": "^6.0.0",
+    "sequelize-cli": "^6.0.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^2.0.16"
   }
 }

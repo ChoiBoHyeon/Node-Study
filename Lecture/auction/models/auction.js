@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 class Auction extends Sequelize.Model {
-  static initate(sequelize) {
+  static init(sequelize) {
     Auction.init({
       bid: {
         type: Sequelize.INTEGER,
@@ -15,7 +15,7 @@ class Auction extends Sequelize.Model {
       sequelize,
       timestamps: true,
       paranoid: true,
-      modelName: Auction,
+      modelName: "Auction",
       tableName: 'auctions',
       charset: 'utf8',
       collate: 'utf8_general_ci',
