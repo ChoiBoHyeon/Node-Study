@@ -21,7 +21,9 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "sequelize": "^5.0.0",
-    "sequelize-cli": "^5.0.0"
+    "sequelize-cli": "^5.0.0",
+    "socket.io": "^4.7.2",
+    "sse": "^0.0.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
