@@ -104,14 +104,12 @@ exports.bid = async (req, res, next) => {
       include: { model: Auction },
       order: [[{ model: Auction}, 'bid', 'DESC']]
     });
-
-    try {
-      console.log('파라미터 값:' + User.id);
-    } catch(error) {
-      console.error('파라미터 값:' + error);
-      next(error);
-    }
-
+    // try {
+    //   console.log('파라미터 값:' + req.user.money);
+    // } catch(error) {
+    //   console.error('파라미터 값:' + error);
+    //   next(error);
+    // }
     if (req.user.money < bid) {
       return res.status(403).send('소유하신 자산보다 높은 금액은 제시할수 없습니다.');
     }
@@ -143,3 +141,17 @@ exports.bid = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.renderList = async(req, res, next) => {
+  try {
+    const goods = await Good.findAll({
+      where: { SoldId: req.user.id },
+      include: { model: Auction },
+      order: [[{ model: Auction }, 'bid', 'DESC']],
+    })
+    res.render('list', { title : '낙찰 목록 - NodeAcution', goods });
+  } catch(error) {
+    console.error(error);
+    next(error);
+  }
+} 
