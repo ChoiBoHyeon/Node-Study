@@ -63,7 +63,7 @@ exports.createGood = async (req, res, next) => {
   }
 };
 
-exports. renderAuction = async(req, res, next) => {
+exports.renderAuction = async(req, res, next) => {
   try {
     const [good, auction] = await Promise.all([
       Good.findOne({
@@ -104,6 +104,17 @@ exports.bid = async (req, res, next) => {
       include: { model: Auction },
       order: [[{ model: Auction}, 'bid', 'DESC']]
     });
+
+    try {
+      console.log('파라미터 값:' + User.id);
+    } catch(error) {
+      console.error('파라미터 값:' + error);
+      next(error);
+    }
+
+    if (req.user.money < bid) {
+      return res.status(403).send('소유하신 자산보다 높은 금액은 제시할수 없습니다.');
+    }
     if (!good) {
       return res.status(404).send('해당 상품은 없습니다.');
     }
