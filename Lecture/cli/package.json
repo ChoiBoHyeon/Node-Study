@@ -1,6 +1,6 @@
 {
   "name": "cli",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "cli": "./template.js"
+    "cli": "./command.js"
+  },
+  "dependencies": {
+    "commander": "^9.5.0",
+    "inquirer": "^8.2.6"
   }
 }
