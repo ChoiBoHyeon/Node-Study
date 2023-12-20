@@ -112,7 +112,7 @@ program
           .then((answers) => {
             if (answers.confirm) {
               makeTemplate(answers.type, answers.name, answers.directory)
-              console.log('터미널을 종료합니다.')
+              console.log(chalk.rgb(128,128,128)('터미널을 종료합니다.'))
             }
         });
       }
