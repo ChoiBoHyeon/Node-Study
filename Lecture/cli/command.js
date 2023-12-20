@@ -3,6 +3,7 @@ const { program } = require('commander');
 const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
+const chalk = require('chalk');
 
 const htmlTemplate = `
 <!DOCTYPE html>
@@ -48,18 +49,18 @@ const makeTemplate = (type, name, directory) => {
   if (type === 'html') {
     const pathToFile = path.join(directory, `${name}.html`);
     if (exist(pathToFile)) {
-      console.error('이미 해당 파일이 존재합니다.')
+      console.error(chalk.bold.red('이미 해당 파일이 존재합니다.'))
     } else {
       fs.writeFileSync(pathToFile, htmlTemplate);
-      console.log(pathToFile,' 생성 완료')
+      console.log(chalk.bold.green(pathToFile,' 생성 완료'))
     }
   } else if (type === 'express-router') {
     const pathToFile = path.join(directory, `${name}.js`)
     if (exist(pathToFile)) {
-      console.error('이미 해당 파일이 존재합니다.')
+      console.error(chalk.bold.red('이미 해당 파일이 존재합니다.'))
     }  else {
       fs.writeFileSync(pathToFile, routerTemplate);
-      console.log(pathToFile,' 생성 완료')
+      console.log(chalk.bold.green(pathToFile,' 생성 완료'))
     }
   } else {
     console.error('html 또는 express-router 둘 중 하나를 입력하세요.')
