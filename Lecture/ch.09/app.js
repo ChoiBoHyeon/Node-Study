@@ -7,6 +7,8 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const { sequelize } = require('./models');
 const passport = require('passport');
+const helmet = require('helmet');
+const hpp = require('hpp')
 const Passport = require("./passport/index");
 Passport();
 
@@ -33,6 +35,18 @@ sequelize.sync({ force: false })
   .catch((err) => {
     console.error(err);
   });
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(helmet({
+    contentSecurituPolicy: false,
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: false,
+  }));
+  app.use(helmet());
+  app.use(hpp());
+} else {
+  app.use(morgan('dev'));
+}
 
 app.use(morgan('dev'));
 app.use('/img',express.static(path.join(__dirname, 'uploads')));

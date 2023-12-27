@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "connect-redis": "^7.1.0",
     "cookie-parser": "^1.4.4",
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
@@ -21,6 +22,7 @@
     "nunjucks": "^3.2.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "redis": "^4.6.12",
     "sequelize": "^5.0.0",
     "sequelize-cli": "^5.0.0",
     "socket.io": "^4.7.2",

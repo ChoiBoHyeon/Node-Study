@@ -6,8 +6,16 @@ const session = require('express-session');
 const passport = require('passport');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
+const redis = require('redis');
+const RedisStore = require('connect-redis')(express);
 
 dotenv.config();
+const redisClient = redis.createClient({
+  url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+  password: process.env.REDIS_PASSWORD,
+  legacyMode: true,
+});
+redisClient.connect().catch(console.error);
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const { sequelize } = require('./models');
@@ -41,6 +49,7 @@ const sessionMiddleware = session({
     httpOnly: true,
     secure: false,
   },
+  store : new RedisStore({ client : redisClient }),
 });
 
 app.use(morgan('dev'));
