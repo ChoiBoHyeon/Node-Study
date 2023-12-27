@@ -7,7 +7,7 @@ const passport = require('passport');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const redis = require('redis');
-const RedisStore = require('connect-redis')(express);
+const RedisStore = require('connect-redis').default;
 
 dotenv.config();
 const redisClient = redis.createClient({
